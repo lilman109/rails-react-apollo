@@ -1,47 +1,13 @@
-"use server";
 import "./App.css";
-import { gql } from "@apollo/client";
-import { useQuery } from "@apollo/client";
+import Users from "./components/Users";
 
-const USERS = gql`
-  query GetUsers {
-    users {
-      id
-      name
-      email
-    }
-  }
-`;
-
-const USER = gql`
-  query User($id: ID!) {
-    user(id: $id) {
-      id
-      name
-      email
-      posts {
-        id
-        title
-      }
-    }
-  }
-`;
 
 function App() {
-  const { data: users } = useQuery(USERS);
-  const { data: user } = useQuery(USER, {
-    variables: { id: 1 },
-  });
 
-  if (users) {
-    console.log(users.users[3].name);
-  }
-
-  if (user) {
-    console.log(user.user.email);
-  }
-
-  return <div className="App">Hello</div>;
-}
+  return (
+    <div className="container mx-auto px-4">
+        <Users />
+    </div>
+  );}
 
 export default App;
