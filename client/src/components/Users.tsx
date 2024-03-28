@@ -3,8 +3,9 @@ import UserAvatar from './UserAvatar';
 import { UserType } from '../types/types';
 import { GET_USERS } from '../gql-schema/schema';
 import {useQuery} from "@apollo/client"
+import CreateUser from './CreateUser';
 
-function Users() {
+const Users = () => {
   const { loading, error, data } = useQuery(GET_USERS);
 
   if (loading) {
@@ -22,7 +23,7 @@ function Users() {
           <UserAvatar user={user} />
         </div>
       ))}
-
+      <CreateUser/>
     </div>
   )
 }
